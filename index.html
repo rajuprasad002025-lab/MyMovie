@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MyMovie</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#10131c;color:white;font-family:Arial,sans-serif}
+header{padding:22px;background:#191f30;text-align:center}
+h1{margin:0;color:#65e6b4}
+main{padding:18px;max-width:850px;margin:auto}
+input{width:100%;padding:14px;border-radius:12px;border:0;font-size:16px}
+h2{margin-top:25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:14px}
+.card{background:#20283b;border-radius:14px;padding:20px 12px;text-align:center}
+.emoji{font-size:38px}
+.card h3{margin:12px 0}
+button{background:#65e6b4;border:0;padding:12px;border-radius:9px;font-weight:bold;cursor:pointer}
+.note{color:#bdc6d8;line-height:1.6}
+footer{text-align:center;padding:25px;color:#bdc6d8}
+</style>
+</head>
+<body>
+<header>
+<h1>🎬 MyMovie</h1>
+<p>Movies • Entertainment • TV</p>
+</header>
+<main>
+<h2>अपनी मूवी सेवा चुनें</h2>
+<input id="search" placeholder="सेवा खोजें..." oninput="filterCards()">
+<div class="grid" id="services">
+<div class="card">
+<div class="emoji">🎥</div><h3>Cinema</h3>
+<button onclick="openService('cinema')">Open Service</button>
+</div>
+<div class="card">
+<div class="emoji">🍿</div><h3>MovieBox</h3>
+<button onclick="openService('moviebox')">Open Service</button>
+</div>
+<div class="card">
+<div class="emoji">📺</div><h3>Castle</h3>
+<button onclick="openService('castle')">Open Service</button>
+</div>
+</div>
+<h2>📱 मोबाइल और 📺 TV</h2>
+<p class="note">यह शुरुआती वेब ऐप मोबाइल और बड़ी TV स्क्रीन के अनुकूल है। फ़िल्में देखने के लिए संबंधित सेवा की अधिकृत वेबसाइट या ऐप और वैध कंटेंट की अनुमति आवश्यक है।</p>
+</main>
+<footer>MyMovie © 2026</footer>
+<script>
+const links={
+ cinema:"",https://www.imdb.com'
+ moviebox:"",'https://www.netflix.com'
+ castle:""'https://www.youtube.com'
+};
+function openService(name){
+ const url=links[name];
+ if(url) window.open(url,"_blank","noopener");
+ else alert("इस सेवा का आधिकारिक लिंक अभी सेट नहीं किया गया है।");
+}
+function filterCards(){
+ const q=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".card").forEach(card=>{
+ card.style.display=card.innerText.toLowerCase().includes(q)?"block":"none";
+ });
+}
+</script>
+</body>
+</html>
